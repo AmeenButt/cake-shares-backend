@@ -49,3 +49,4 @@ global.NOTIFICATION = FETCH_MODEL('notification');
 global.MESSAGE = FETCH_MODEL('message');
 global.CONVERSATION = FETCH_MODEL('conversation');
 global.MESSAGE_REPORT = FETCH_MODEL('message_report');
+global.MESSAGE_REPORT = FETCH_MODEL('wishlist');

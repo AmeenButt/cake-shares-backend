@@ -4,7 +4,7 @@ const multer = require('multer');
 const rateLimit = require('express-rate-limit');
 
 const router = express.Router();
-const { productController, investmentController, categoryController, productAdvertisementController } = require('../controller');
+const { productController, investmentController, categoryController, productAdvertisementController,  wishlistController } = require('../controller');
 const { window, max_limit } = require('../config');
 const { userAuth, adminAuth, mergeAuth, tryCatch } = require('../middleware');
 
@@ -56,6 +56,12 @@ router.group('/v1', router => {
 
   // PRODUCT ADVERTISEMENT
   router.post('/advertise-product', [userAuth], tryCatch(productAdvertisementController.advertiseProduct));
+
+   // WISHLIST  
+   router.post('/wishlist/add', [userAuth], tryCatch(wishlistController.addToWishlist));
+   router.post('/wishlist/remove', [userAuth], tryCatch(wishlistController.removeFromWishlist));
+   router.get('/wishlist/:userId', [userAuth], tryCatch(wishlistController.getUserWishlist));
+   router.post('/wishlist/isItemInWishlist', [userAuth], tryCatch(wishlistController.isInWishlist));
 });
 
 module.exports = router;
