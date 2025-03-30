@@ -156,6 +156,7 @@ module.exports = {
     let finalKycData = {};
 
     if (user?.type !== 'Buyer') {
+      
       const images = [];
       const passportImageFrontKey = await extractKey(kyc?.passportImageFront);
       const passportImageBackKey = await extractKey(kyc?.passportImageBack);
