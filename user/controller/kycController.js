@@ -158,50 +158,51 @@ module.exports = {
     if (user?.type !== 'Buyer') {
       
       const images = [];
+
       const passportImageFrontKey = await extractKey(kyc?.passportImageFront);
       const passportImageBackKey = await extractKey(kyc?.passportImageBack);
       const residenceProofImageKey = await extractKey(kyc?.residenceProofImage);
       const companyDocumentImageKey = await extractKey(kyc?.companyDocumentImage);
       const personalImageKey = await extractKey(kyc?.personalImage);
 
-      if (kyc?.passportImageFront) {
-        // const passportImageFrontUrl = await generatePreSignedUrl(passportImageFrontKey);
-        images.push({ fieldName: 'Passport Image (Front)', url: kyc?.passportImageFront });
+      if (passportImageFrontKey) {
+        const passportImageFrontUrl = await generatePreSignedUrl(passportImageFrontKey);
+        images.push({ fieldName: 'Passport Image (Front)', url: passportImageFrontUrl });
       }
-      if (kyc?.passportImageBack) {
-        // const passportImageBackUrl = await generatePreSignedUrl(passportImageBackKey);
-        images.push({ fieldName: 'Passport Image (Back)', url: kyc?.passportImageBack });
+      if (passportImageBackKey) {
+        const passportImageBackUrl = await generatePreSignedUrl(passportImageBackKey);
+        images.push({ fieldName: 'Passport Image (Back)', url: passportImageBackUrl });
       }
-      if (kyc?.residenceProofImage) {
-        // const residenceProofImageUrl = await generatePreSignedUrl(residenceProofImageKey);
-        images.push({ fieldName: 'Residence Proof Image', url: kyc?.residenceProofImage });
+      if (residenceProofImageKey) {
+        const residenceProofImageUrl = await generatePreSignedUrl(residenceProofImageKey);
+        images.push({ fieldName: 'Residence Proof Image', url: residenceProofImageUrl });
       }
-      if (kyc?.personalImage) {
-        // const personalImageUrl = await generatePreSignedUrl(personalImageKey);
-        images.push({ fieldName: 'Facial Image', url: kyc?.personalImage });
+      if (personalImageKey) {
+        const personalImageUrl = await generatePreSignedUrl(personalImageKey);
+        images.push({ fieldName: 'Facial Image', url: personalImageUrl });
       }
 
-      if (kyc?.companyDocumentImage) {
-        // const companyDocumentImageUrl = await generatePreSignedUrl(companyDocumentImageKey);
-        images.push({ fieldName: 'Company Document Image', url: kyc?.companyDocumentImage });
+      if (companyDocumentImageKey) {
+        const companyDocumentImageUrl = await generatePreSignedUrl(companyDocumentImageKey);
+        images.push({ fieldName: 'Company Document Image', url: companyDocumentImageUrl });
       }
 
       finalKycData.images = images;
       finalKycData.bankDetails = kyc.bankDetails;
     } else if (user?.kycRequestLevel === 1) {
-      // const passportImageFrontKey = await extractKey(kyc?.passportImageFront);
-      // const passportImageBackKey = await extractKey(kyc?.passportImageBack);
-      images.push({ fieldName: 'Passport Image (Front)', url: kyc?.passportImageFront });
-      images.push({ fieldName: 'Passport Image (Back)', url: kyc?.passportImageBack });
+      const passportImageFrontKey = await extractKey(kyc?.passportImageFront);
+      const passportImageBackKey = await extractKey(kyc?.passportImageBack);
+      images.push(await generatePreSignedUrl(passportImageFrontKey));
+      images.push(await generatePreSignedUrl(passportImageBackKey));
       finalKycData.images = images;
     } else if (user?.kycRequestLevel === 2) {
-      // const residenceProofImageKey = await extractKey(kyc?.residenceProofImage);
-      images.push({ fieldName: 'Residence Proof Image', url: kyc?.residenceProofImage });
+      const residenceProofImageKey = await extractKey(kyc?.residenceProofImage);
+      images.push(await generatePreSignedUrl(residenceProofImageKey));
       finalKycData.images = images;
       finalKycData.bankDetails = kyc.bankDetails;
     } else {
-      // const personalImageKey = await extractKey(kyc?.personalImage);
-      images.push({ fieldName: 'Facial Image', url: kyc?.personalImage });
+      const personalImageKey = await extractKey(kyc?.personalImage);
+      images.push(await generatePreSignedUrl(personalImageKey));
       finalKycData.images = images;
     }
 

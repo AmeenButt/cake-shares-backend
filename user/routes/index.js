@@ -51,6 +51,7 @@ router.group('/v1', router => {
   router.post('/approve-kyc/:id', [adminAuth], tryCatch(kycController.approveKyc));
   router.post('/decline-kyc/:id', [adminAuth], tryCatch(kycController.declineKyc));
   router.get('/get-kyc-info/:id', [adminAuth], tryCatch(kycController.getKycInfo));
+
 });
 
 router.group('/payment/v1', router => {

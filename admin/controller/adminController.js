@@ -149,12 +149,12 @@ module.exports = {
           admin.roles = role;
         }
       });
+
       if (req.file) {
         const currentTime = Date.now();
         const { locations } = await uploadImages(req.file, `Profile/${currentTime}`);
         await removeFromS3(counter?.profilePicture?.split('.com/')[1]);
         admin.profilePicture = locations.profilePicture[0];
-        console.log("locations",locations)
       }
     }
     await ADMIN.findOneAndUpdate({ _id: id }, { $set: { ...admin } });
