@@ -50,3 +50,4 @@ global.PRODUCT_ADVERTISEMENT = FETCH_MODEL('product_advertisement');
 global.WALLET = FETCH_MODEL('wallet');
 global.PRODUCT_EDIT_REQUEST = FETCH_MODEL('product_edit_request');
 global.TRANSACTION = FETCH_MODEL('transaction');
+global.WISHLIST = FETCH_MODEL('wishlist');

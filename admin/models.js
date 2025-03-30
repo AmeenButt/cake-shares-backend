@@ -38,3 +38,4 @@ global.ADMIN = FETCH_MODEL('admin');
 global.ADMIN_JWT = FETCH_MODEL('admin_jwt');
 global.PERMISSION = FETCH_MODEL('permissions');
 global.ROLE = FETCH_MODEL('roles');
+global.WISHLIST = FETCH_MODEL('wishlist');
